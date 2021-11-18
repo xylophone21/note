@@ -24,27 +24,7 @@ https://mp.weixin.qq.com/s/S3MKdsnDbHqlVjcPapbIDQ
 
 当然如果一定要说三个我自己认为的最重要的东西，那我会选互联互通、本地网络和多生态同时控制。
 
-```plantuml
-@startuml
-rectangle "D厂商智能音响，平板，TV，网关等"  as dc
-rectangle "E厂商App"  as ec
-
-rectangle "A厂商WiFi设备"  as ad
-rectangle "B厂商WiFi设备"  as bd
-rectangle "C厂商Thread设备"  as cd
-rectangle "……"  as dd
-
-
-dc -down-> ad
-dc -down-> bd
-dc -down-> cd
-dc -down-> dd
-
-ec -down-> ad
-ec -down-> bd
-ec -down-> dd
-@enduml
-```
+![互联互通及本地网络](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuIfAJIv9p4lFILLGSddQr_HqQjkpcRjUDEzzEN_pqyczx_VqFDsv-TdS_K16I1YGUBvtujFMpS_NTYefA2GMAwGa8nlW2Z70iQ008fkQp8KixGYH3izqotonRj_J9UqGLOafo8gSi2jAGb7a354Kab6KcfY2h2mPHTcZXcL017Lf2XSNLqgoWcvAVdcUhXtGLcHU4Wel6Pa7rfcAeZ4LHMCgYbA7rBmKOBW20000)
 
 ### 互联互通
 
