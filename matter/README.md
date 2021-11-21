@@ -1,4 +1,4 @@
 # Matter开发笔记
 
-1. [简介及准备工作](./introduction/README.md)
+1. [Matter开发笔记简介](./introduction/README.md)
 
