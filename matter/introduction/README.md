@@ -6,15 +6,15 @@
 
 https://developer.apple.com/videos/play/wwdc2021/10298/
 
-一句话说，就是Apple在HomeKit里计划用下图这样的方式实现Matter，并且计划在21.9月iOS15发布时，就抢跑发布。之所以说是抢跑，是因为彼时Matter的发布计划还是22年1月。当然现在这个计划以及延迟到明年4月了。后来也尝试过在iOS15上给Matter添加Matter的设备，确实是6月份的一个版本，基本能跑，因为和最新的版本差异较大，又不支持我们关注的放心，就没有深入。
+一句话说，就是Apple在HomeKit里计划用下图这样的方式实现Matter，并且计划在21.9月iOS15发布时，就抢跑发布。之所以说是抢跑，是因为彼时Matter的发布计划还是22年1月。当然现在这个计划以及延迟22年4月了。后来也尝试过在iOS15上给Matter添加Matter的设备，确实是6月份的一个版本，基本能跑，因为和最新的版本差异较大，又不支持我们关注的方向，就没有深入。
 
-从这张图及视频不难看出，对于用户及App开发者来说，在iOS上，Matter设备基本上与HomeKit设备一致，只是设备端会更灵活，一次认证，可以支持更多的控制端生态。
+从这张图及视频不难看出，对于用户及App开发者来说，在iOS上，Matter设备基本上与HomeKit设备一致，只是设备端会更灵活，一次认证，可以支持更多的控制端生态。当然这个过程中，HomeKit里会不会也Apple的私货，比如AirPlay2，以及Matter什么时候会跟进，这就是另外一个故事了。一般来说，标准是永远也追不上私有的，比如浏览器里曾经的一堆姓-webkit-的标签。
 
 ![Apple Arch](./apple_arch.png)
 
-## 关于这个系列
+## 关于这个笔记
 
-本来以为这个活儿跟之前的开源移植不会有什么区别，下个代码，编译一下，再集成到自己的系统中，跑通了就扔出去慢慢完善，同时看看核心代码提供一些支援。却没想到跑着跑着，慢慢干就起了开源，从最初提交一些辅助脚本，到改模块架构，再到被管理员误认为是模块的maintainer。加上随着跟同行沟通的增多，大家越来越多的公认这个事，确实是行业里的历史事件，遂萌生了一些把这个过程记录起来的想法。说起来，咱不又参与历史了呢。
+本来以为这个活儿跟之前的开源移植不会有什么区别，下个代码，编译一下，再集成到自己的系统中，跑通了就扔出去慢慢完善，同时看看核心代码提供一些支援。却没想到跑着跑着，慢慢就干起了开源，从最初提交一些辅助脚本，到改模块架构，再到被管理员误认为是模块的maintainer。加上随着跟同行沟通的增多，大家越来越多的公认这个事，确实是行业里的历史事件，遂萌生了一些把这个过程记录起来的想法。说起来，咱不又参与历史了呢。
 
 基于上面的原因，这个系列的内容肯定就不是实时的了，文章上传的时候上面描述的一些情况几乎都不存在了(因为代码已经修复了)，但感谢github为我们详细记录了这个过程，我会尽量附上当时的commitid，供后续参考。
 
@@ -30,7 +30,7 @@ https://mp.weixin.qq.com/s/S3MKdsnDbHqlVjcPapbIDQ
 
 ### 互联互通
 
-Matter要做的是互联互通，也就是上图中画的这样，无论你家的智能设备是ABC哪个厂家的，只要他们遵循Matter协议，他们都可以被DE等厂家同样遵循Matter协议的设备或者App来控制。（注：硬件限制显然仍是不可逾越的，比如上图中App就没有跟Thread设备的连线，因为当前手机普遍不支持Thread网络）
+Matter要做的是互联互通，也就是下图中画的这样，无论你家的智能设备是ABC哪个厂家的，只要他们遵循Matter协议，他们都可以被DE等厂家同样遵循Matter协议的设备或者App来控制。（注：硬件限制显然仍是不可逾越的，比如上图中App就没有跟Thread设备的连线，因为当前手机普遍不支持Thread网络）
 
 ![互联互通及本地网络](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuLBCp4lEAKr9LR19B4hEoCnDB4dLTuInxBYuYbAJInBpqdDI5PHSdlOrFPtQzcpchXVDUr_Et_nqSk_xFJrFTsv-DdS_a14I1YIUxvtuj7NpyxMTIWeAYSKAASd81hX2370iA838fYQZcEy8aGxFTCjyiMxVqoNj45M9ASYAdB0hIa9Hv0nH599Hb9gOWgmi6KNPeuPbG0HrQGeNLr1gJhnRJdvvl4j-UPv6Ih9EOeecfc0IDi5aR88fG44qqLHiXgPYCpGLejyXDIy564y0)
 
@@ -44,7 +44,7 @@ Matter要做的是互联互通，也就是上图中画的这样，无论你家�
 
 Matter是纯本地网络的协议，跟HomeKit一样，他只定义本地局域网中的控制协议，不管主控端到云。这对于那些非常关注个人隐私的用户来说，是一个非常好的消息。
 
-当然不定义不表示不能做，你仍然可以通过家里的一台网关类设备作为代理，来实现远程的设备控制和查看，前提是你家里必须有一台适合做网关的设备，比如丢在沙发上的iPad，配电箱的路由器或者客订里的智能电视。
+当然不定义不表示不能做，你仍然可以通过家里的一台网关类设备作为代理，来实现远程的设备控制和查看，前提是你家里必须有一台适合做网关的设备，比如丢在沙发上的iPad，配电箱的路由器或者客厅里的智能电视。
 
 ![本地网络协议](https://www.plantuml.com/plantuml/png/SoWkIImgAStDuLBCp4lEAKr9LR19B4hEoCnDB4dLTuInxBYuYbAJInBpqdDI5PHSdlOrFPtQzcpchXVDUr_Et_nqSk_xFJrFTsv-DdS_a14I1YIUxvtuj7NpyxMTIWeAYSKAASd81hX2370iA838fYQZcEy8aGxFTCjyiMxVqoNj45M9ASYAdB0hIa9Hv0nH599Hb9gOWgmi6KNPeuPbG0HrQGeslpxPDL49ue-S_D8K1UMSpFICalIYrDGyBYwec6vAVdcUhXt8grn1gJdnRZdvvV4kG36Db6ITn1HDJC4aR8B9s0HJW89eegdO34t5PcWgHBz3QbuACA81)
 
@@ -72,7 +72,7 @@ Matter是纯本地网络的协议，跟HomeKit一样，他只定义本地局域�
     - 私有项目同样就不贴地址了，CSA成员同样发邮件给help@zigbee.org申请
     - 这里是最新的Matter规范文档的撰写区，可以下载最及时的规范文档，当然也可以提Issue和PR，都会有人处理。只不过Issue区应该只能处理文字上的问题，如果想要就方案和需求提案，还是要上CSA工作组。
 4. Test Plans GitHub
-    - 同样私有项目，同样没有地址，同样CSA成员同样发邮件给help@zigbee.org申请
+    - 同样私有项目，同样不贴地址了，同样CSA成员同样发邮件给help@zigbee.org申请
     - 测试用例及测试工具的开发区，最新的测试用例，测试工具都可以在这里找到。
 5. Slack 工作区
     - 同样私有，同样没有地址，同样CSA成员同样发邮件给help@zigbee.org申请
@@ -84,8 +84,8 @@ Matter是纯本地网络的协议，跟HomeKit一样，他只定义本地局域�
 开发环境方面，由于我主要在做Android TV这一块的，目前看来：
 - MacOS是最方便的，升级到11.6.1都没有问题，M1芯片也没有什么大问题，可以放心入手。
 - Ubuntu 20.04 LTS也是可以，但是要用带GUI的，因为要跑Android Studio。
-- Server或者WSL + Windows上跑Android Studio理论上也是可以的，但我在同事的机器上调试没有成功(以设置target.source-map)，这个坑就先挖这里了。
+- Ubuntu Server或者WSL + Windows上跑Android Studio理论上也是可以的，但我在同事的机器上调试没有成功(已设置target.source-map)，时间关系，这个坑就先挖这里了。
 - 如果你还想跑蓝牙配网等相关的流程，那么开发板还是要要一块的，ESP32 (M5 stack)之类的。但是本着通用性的考虑和与我的开发环境（MacOS）的契合度的问题，我自己选的是树莓派4，毕竟后面用来~~吃灰~~跑一些软路由、云服务什么的，还是蛮香的。
-    -- ESP32其实也支持MacOS的开发环境，详细见[这里](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html)
+    - ESP32其实也支持MacOS的开发环境，详细见[这里](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html)
 
 
