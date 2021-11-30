@@ -66,16 +66,16 @@ Matter是纯本地网络的协议，跟HomeKit一样，他只定义本地局域�
     - https://github.com/project-chip/connectedhomeip
     - 由于Matter目前仍在开发过程中，相关的资料并不公开，所以如果你所在的组织还不是CSA的成员，那么这个暂时可能是你唯一可以获取的内容
 2. CSA工作组
-    - 地址就不提供了，如果你所在的组织已经加入了CSA，发邮件给help@zigbee.org就可以获取地址和账号
+    - 地址就不提供了，如果你所在的组织已经加入了CSA，发邮件给CSA联系人就可以获取地址和账号
     - 这里名义上是官方的工作区，会发布最新的各种资料，但实际上个人感觉这里并不热闹。最重要的作用就是通知每天的各种会议及发布纪要。前提是你能够每天半夜起来开会，还有有练听力的决心。
 3. Specifications GitHub
-    - 私有项目同样就不贴地址了，CSA成员同样发邮件给help@zigbee.org申请
+    - 私有项目同样就不贴地址了，CSA成员同样发邮件给CSA联系人申请
     - 这里是最新的Matter规范文档的撰写区，可以下载最及时的规范文档，当然也可以提Issue和PR，都会有人处理。只不过Issue区应该只能处理文字上的问题，如果想要就方案和需求提案，还是要上CSA工作组。
 4. Test Plans GitHub
-    - 同样私有项目，同样不贴地址了，同样CSA成员同样发邮件给help@zigbee.org申请
+    - 同样私有项目，同样不贴地址了，同样CSA成员同样发邮件给CSA联系人申请
     - 测试用例及测试工具的开发区，最新的测试用例，测试工具都可以在这里找到。
 5. Slack 工作区
-    - 同样私有，同样没有地址，同样CSA成员同样发邮件给help@zigbee.org申请
+    - 同样私有，同样没有地址，同样CSA成员同样发邮件给CSA联系人申请
     - 应该是最热闹的地方了，任何相关的问题，都可以在这里问，包括找人走读你的PR，会有人答复你的。
 6. CMGC(CSA中国成员组)
     - https://zigbeealliance.org/about/cmgc/
@@ -87,5 +87,3 @@ Matter是纯本地网络的协议，跟HomeKit一样，他只定义本地局域�
 - Ubuntu Server或者WSL + Windows上跑Android Studio理论上也是可以的，但我在同事的机器上调试没有成功(已设置target.source-map)，时间关系，这个坑就先挖这里了。
 - 如果你还想跑蓝牙配网等相关的流程，那么开发板还是要要一块的，ESP32 (M5 stack)之类的。但是本着通用性的考虑和与我的开发环境（MacOS）的契合度的问题，我自己选的是树莓派4，毕竟后面用来~~吃灰~~跑一些软路由、云服务什么的，还是蛮香的。
     - ESP32其实也支持MacOS的开发环境，详细见[这里](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html)
-
-
